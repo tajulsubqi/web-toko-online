@@ -30,6 +30,7 @@ export async function retrieveDataById(collectionName: string, id: string) {
   return data
 }
 
+// service untuk sign up/register
 export async function signUp(
   userData: {
     fullname: string
@@ -62,5 +63,22 @@ export async function signUp(
       .catch((error) => console.log(error))
 
     callback(false)
+  }
+}
+
+// service untuk signIn/login
+export async function signIn(email: string) {
+  const q = query(collection(firestore, "users"), where("email", "==", email))
+
+  const snapShot = await getDocs(q)
+  const data = snapShot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }))
+
+  if (data) {
+    return data[0]
+  } else {
+    return null
   }
 }

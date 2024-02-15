@@ -6,6 +6,8 @@ const RegisterView = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
 
+  const router = useRouter()
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
@@ -13,8 +15,6 @@ const RegisterView = () => {
 
     //yang awalnya e.target
     const form = e.target as HTMLFormElement
-
-    const push = useRouter
 
     const data = {
       fullname: form.fullname.value,
@@ -34,7 +34,7 @@ const RegisterView = () => {
     if (result.status === 200) {
       form.reset()
       setIsLoading(false)
-      push("/auth/login")
+      router.push("/auth/login")
     } else {
       setIsLoading(false)
       setError("Email already registered")
