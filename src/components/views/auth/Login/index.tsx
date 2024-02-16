@@ -3,6 +3,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 // import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
+import { FcGoogle } from "react-icons/fc"
 
 const LoginView = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -54,21 +55,34 @@ const LoginView = () => {
               type="email"
               name="email"
               placeholder="Enter your email"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-2 rounded-md mt-3 outline-none"
+              className="bg-slate-100 border border-slate-200 shadow-sm p-3 rounded-md mt-3 outline-none"
             />
 
             <input
               type="password"
               name="password"
               placeholder="Enter your password"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-2 rounded-md mt-3 outline-none"
+              className="bg-slate-100 border border-slate-200 shadow-sm p-3 rounded-md mt-3 outline-none"
             />
 
             <button
               type="submit"
-              className="mt-5 bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-slate-700 duration-300 transition"
+              className="mt-5 bg-black text-white font-semibold px-4 py-3 rounded-md hover:bg-slate-700 duration-300 shadow-sm transition"
             >
               {isLoading ? "Loading..." : "Login"}
+            </button>
+
+            <hr className="my-3 border-[1px]" />
+
+            <button
+              type="button"
+              onClick={() => signIn("google", { callbackUrl, redirect: false })}
+              className="bg-sky-200 text-black py-2 mt-1 rounded-md font-semibold hover:bg-sky-300 duration-400 shadow-sm transition"
+            >
+              <div className="flex items-center gap-2 justify-center">
+                <FcGoogle size={30} />
+                <span>Login With Google</span>
+              </div>
             </button>
           </div>
         </form>
