@@ -1,3 +1,5 @@
+import Button from "@/components/ui/button"
+import Input from "@/components/ui/input"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
@@ -50,33 +52,13 @@ const RegisterView = () => {
       <div className="mt-5 shadow-sm p-4 md:border rounded-sm">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 w-[280px] md:w-[500px] md:p-6 ">
-            <input
-              type="text"
-              name="fullname"
-              placeholder="Enter your fullname"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-2 rounded-md mt-3 outline-none"
-            />
+            <Input type="text" name="fullname" placeholder="Enter your fullname" />
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-2 rounded-md mt-3 outline-none"
-            />
+            <Input type="email" name="email" placeholder="Enter your email" />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-2 rounded-md mt-3 outline-none"
-            />
+            <Input type="password" name="password" placeholder="Enter your password" />
 
-            <button
-              type="submit"
-              className="mt-5 bg-black text-white font-semibold px-4 py-2 rounded-md hover:bg-slate-700 duration-300 transition"
-            >
-              {isLoading ? "Loading..." : "Register"}
-            </button>
+            <Button label={isLoading ? "Loading..." : "Register"} type="submit" />
           </div>
         </form>
       </div>

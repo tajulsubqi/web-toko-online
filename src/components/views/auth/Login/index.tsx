@@ -1,3 +1,5 @@
+import Button from "@/components/ui/button"
+import Input from "@/components/ui/input"
 import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/router"
@@ -51,26 +53,11 @@ const LoginView = () => {
       <div className="mt-5 shadow-sm p-4 md:border rounded-sm">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col gap-2 w-[280px] md:w-[500px] md:p-6 ">
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-3 rounded-md mt-3 outline-none"
-            />
+            <Input type="email" name="email" placeholder="Enter your email" />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              className="bg-slate-100 border border-slate-200 shadow-sm p-3 rounded-md mt-3 outline-none"
-            />
+            <Input type="password" name="password" placeholder="Enter your password" />
 
-            <button
-              type="submit"
-              className="mt-5 bg-black text-white font-semibold px-4 py-3 rounded-md hover:bg-slate-700 duration-300 shadow-sm transition"
-            >
-              {isLoading ? "Loading..." : "Login"}
-            </button>
+            <Button label={isLoading ? "Loading..." : "Login"} type="submit" />
 
             <hr className="my-3 border-[1px]" />
 
