@@ -1,13 +1,27 @@
-import AdminLayout from "@/components/layout/AdminLayout"
-import React from "react"
+import UsersAdminView from "@/components/views/Admin/Users"
+import userServices from "@/services/user"
+import React, { useEffect, useState } from "react"
 
 const AdminUserPage = () => {
+  const [users, setUsers] = useState([])
+
+  const getAllUsers = async () => {
+    try {
+      const res: any | undefined = await userServices.getAllUsers()
+      setUsers(res.data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
   return (
-    <AdminLayout>
-      <div>
-        <div>Admin Page</div>
-      </div>
-    </AdminLayout>
+    <>
+      <UsersAdminView users={users} />
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import Button from "@/components/ui/button"
 import Input from "@/components/ui/input"
 import authServices from "@/services"
+import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
@@ -25,14 +26,12 @@ const RegisterView = () => {
       password: form.password.value,
     }
 
-    // const result = await authServices.registerAccount(data)
+    // const result: any | undefined = await authServices.registerAccount(data)
 
-    const result = await fetch("/api/user/register", {
-      method: "POST",
+    const result = await axios.post("/api/user/register", data, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
 
     // jika berhasil maka reset form

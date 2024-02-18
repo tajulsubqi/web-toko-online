@@ -1,4 +1,3 @@
-import API from "@/lib/axios/API"
 import { adddata, retrieveDataByField } from "@/lib/firebase/service"
 import bcrypt from "bcrypt"
 
@@ -24,8 +23,6 @@ export async function signUp(
 
     // Hash password
     userData.password = await bcrypt.hash(userData.password, 10)
-    userData.createdAt = new Date()
-    userData.updatedAt = new Date()
 
     adddata("users", userData, (result: boolean) => {
       callback(result)
@@ -46,7 +43,14 @@ export async function signIn(email: string) {
 
 //login with goggle
 export async function loginWithGoogle(
-  data: { email: string; role?: string },
+  data: {
+    email: string
+    role?: string
+    password?: string
+    createdAt?: Date
+    updatedAt?: Date
+  },
+
   callback: Function,
 ) {
   const user = await retrieveDataByField("users", "email", data.email)
@@ -55,6 +59,10 @@ export async function loginWithGoogle(
     callback(user[0])
   } else {
     data.role = "member"
+    data.createdAt = new Date()
+    data.updatedAt = new Date()
+    data.password = ""
+
     await adddata("users", data, (result: boolean) => {
       callback(data)
 

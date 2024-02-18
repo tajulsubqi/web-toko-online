@@ -17,7 +17,7 @@ const Sidebar = (props: PropsTypes) => {
   const { pathname } = useRouter()
 
   return (
-    <div className="bg-slate-800 h-screen rounded-r-3xl text-slate-50 p-[20px] w-[280px] flex flex-col justify-between ">
+    <div className="bg-slate-800 h-screen rounded-r-3xl text-slate-50 p-[20px] w-[280px] flex flex-col justify-between sticky">
       <div>
         <h1 className="text-2xl font-semibold text-center">Admin Panel</h1>
 
@@ -27,12 +27,12 @@ const Sidebar = (props: PropsTypes) => {
           {lists.map((item, index) => (
             <Link
               href={item.url}
-              className={`flex items-center gap-2 hover:bg-slate-300 hover:text-slate-800 p-2 px-3 rounded-xl duration-300 transition ${
+              className={`flex items-center gap-2 hover:bg-slate-300 hover:text-slate-800 p-2 px-3 rounded-lg duration-300 transition ${
                 pathname === item.url ? " bg-slate-300 text-slate-800" : ""
               }`}
               key={index}
             >
-              <div>{item.icon}</div>
+              <span>{item.icon}</span>
               <h4 className="cursor-pointer text-md ">{item.title}</h4>
             </Link>
           ))}
