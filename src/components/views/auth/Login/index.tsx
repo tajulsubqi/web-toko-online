@@ -3,7 +3,6 @@ import Input from "@/components/ui/input"
 import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/router"
-// import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 import { FcGoogle } from "react-icons/fc"
 
