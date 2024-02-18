@@ -25,7 +25,15 @@ const RegisterView = () => {
       password: form.password.value,
     }
 
-    const result = await authServices.registerAccount(data)
+    // const result = await authServices.registerAccount(data)
+
+    const result = await fetch("/api/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
 
     // jika berhasil maka reset form
     if (result.status === 200) {
@@ -34,7 +42,8 @@ const RegisterView = () => {
       router.push("/auth/login")
     } else {
       setIsLoading(false)
-      setError("Email already registered")
+      setError("Something went wrong")
+      console.log(result)
     }
   }
 

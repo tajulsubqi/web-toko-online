@@ -35,7 +35,7 @@ const LoginView = () => {
         push(callbackUrl)
       } else {
         setIsLoading(false)
-        setError(res?.error)
+        setError("Email or password is incorrect")
       }
     } catch (error) {
       setIsLoading(false)
