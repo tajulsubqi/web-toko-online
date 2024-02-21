@@ -1,12 +1,12 @@
 import DashboardAdminView from "@/components/views/Admin/DashboardView"
 import React from "react"
 
-const index = () => {
+const AdminPage = () => {
   return (
-    <div>
+    <>
       <DashboardAdminView />
-    </div>
+    </>
   )
 }
 
-export default index
+export default AdminPage

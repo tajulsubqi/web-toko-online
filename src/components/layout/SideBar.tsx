@@ -1,4 +1,5 @@
-import Button from "@/components/ui/button"
+import Button from "@/components/ui/Button"
+import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React from "react"
@@ -42,7 +43,6 @@ const Sidebar = (props: PropsTypes) => {
         onClick={() => signOut()}
         label="Logout"
         type="submit"
-        bgColor
         icon={<MdOutlineLogout size={25} />}
       />
     </div>

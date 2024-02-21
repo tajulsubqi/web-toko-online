@@ -1,10 +1,11 @@
-import Button from "@/components/ui/button"
-import Input from "@/components/ui/input"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
 import authServices from "@/services"
 import axios from "axios"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
+import toast from "react-hot-toast"
 
 const RegisterView = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -26,23 +27,19 @@ const RegisterView = () => {
       password: form.password.value,
     }
 
-    // const result: any | undefined = await authServices.registerAccount(data)
-
-    const result = await axios.post("/api/user/register", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    // post data register
+    const response: any | undefined = await authServices.registerAccount(data)
 
     // jika berhasil maka reset form
-    if (result.status === 200) {
+    if (response.status === 200) {
       form.reset()
       setIsLoading(false)
+      toast.success("Register success")
       router.push("/auth/login")
     } else {
       setIsLoading(false)
       setError("Something went wrong")
-      console.log(result)
+      toast.error(response.error)
     }
   }
 
@@ -61,7 +58,9 @@ const RegisterView = () => {
 
             <Input type="password" name="password" placeholder="Enter your password" />
 
-            <Button label={isLoading ? "Loading..." : "Register"} type="submit" />
+            <div className="mt-3">
+              <Button label={isLoading ? "Loading..." : "Register"} type="submit" />
+            </div>
           </div>
         </form>
       </div>

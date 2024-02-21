@@ -1,5 +1,5 @@
 import React from "react"
-import Sidebar from "../SideBar"
+import Sidebar from "./SideBar"
 import { MdDashboard } from "react-icons/md"
 import { FaCartPlus } from "react-icons/fa"
 import { FaUserGroup } from "react-icons/fa6"

@@ -1,9 +1,10 @@
-import Button from "@/components/ui/button"
-import Input from "@/components/ui/input"
+import Button from "@/components/ui/Button"
+import Input from "@/components/ui/Input"
 import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { FormEvent, useState } from "react"
+import toast from "react-hot-toast"
 import { FcGoogle } from "react-icons/fc"
 
 const LoginView = () => {
@@ -31,14 +32,17 @@ const LoginView = () => {
 
       if (!res?.error) {
         setIsLoading(false)
+        toast.success("Login success")
         form.reset()
         push(callbackUrl)
       } else {
         setIsLoading(false)
+        toast.error("Login failed")
         setError("Email or password is incorrect")
       }
     } catch (error) {
       setIsLoading(false)
+      // toast.error("Login failed")
       setError("Email or password is incorrect")
     }
   }
@@ -56,7 +60,9 @@ const LoginView = () => {
 
             <Input type="password" name="password" placeholder="Enter your password" />
 
-            <Button label={isLoading ? "Loading..." : "Login"} type="submit" />
+            <div className="mt-3">
+              <Button label={isLoading ? "Loading..." : "Login"} type="submit" />
+            </div>
 
             <hr className="my-3 border-[1px]" />
 

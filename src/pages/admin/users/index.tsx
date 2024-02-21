@@ -1,9 +1,11 @@
-import UsersAdminView from "@/components/views/Admin/Users"
+import UsersAdminView from "@/components/views/Admin/UsersView"
 import userServices from "@/services/user"
 import React, { useEffect, useState } from "react"
 
 const AdminUserPage = () => {
   const [users, setUsers] = useState([])
+  // const userData,
+  //   setuserData = []
 
   const getAllUsers = async () => {
     try {
